@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Estado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-warning">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/Cuentas/cuenta3.html"> <img src="/imagenes/logo2.jfif" alt="Logo" width="40" height="34" class="d-inline-block align-text-top"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon fs-1 text-white"> 𝄘 </span>
+      </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <button  class="btn btn-warning text-white" id="Opcion1">
+                    Saldo
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="btn btn-warning text-white" id="Opcion2">
+                  Ingresar
+                </button>
+              </li>
+              <li class="nav-item">
+                <button class="btn btn-warning text-white" id="Opcion3">
+                  Retirar
+              </button>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link btn btn-outline-danger text-dark" href="/intro/index.html">Salir</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div>
+        <div class="container text-center" >
+          <div class="row row-cols-3">
+            <div class="col">
+              <div id="root1">
+                <br>
+                <h3 class="text-warning">
+                  Puedes Confiar en Nostros
+                </h3>
+                <br>
+                <h5>
+                  Nunca dudes, nunca usaremos TU dinero ni TUS datos a nuestro beneficio.
+                </h5>
+                <img src="/imagenes/confianza.jpeg" class="img-fluid rounded" alt="">
+              </div>
+            </div>
+            <div class="col">
+              <div id="root2">
+                <br>
+                <h3 class="text-warning fs-1">
+                  Bienvenido a Banco estado
+                </h3>
+                <br>
+                <img src="/imagenes/logo3.svg" alt="">
+              </div>
+            </div>
+            <div class="col">
+              <div id="root3">
+                <br>
+                <h3 class="text-warning">
+                  Siempre Estamos en Búsqueda
+                </h3>
+                <br>
+                <h5>
+                  Siempre buscamos las mejores opciones para dar un servicio de calidad.
+                </h5>
+                <img src="/imagenes/busqueda.webp" class="img-fluid rounded" alt="|">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/Cuentas/main.js"></script>
+    <script>
+      // CONSULTAR SALDO
+        const root1 = document.getElementById('root1');
+        const root2 = document.getElementById('root2');
+        const root3 = document.getElementById('root3');
+        lst = JSON.parse(localStorage.getItem("Usuarios"));
+
+        console.log(typeof(lst));
+        console.log(lst)
+
+        const Opcion1 = document.getElementById('Opcion1');
+  
+        Opcion1.addEventListener('click', (event) => {
+          
+          root1.innerHTML = `
+                <br>
+                <h3 class="text-warning">
+                  Puedes Confiar en Nostros
+                </h3>
+                <br>
+                <h5>
+                  Nunca dudes, nunca usaremos TU dinero ni TUS datos a nuestro beneficio.
+                </h5>
+                <img src="/imagenes/confianza.jpeg" class="img-fluid rounded" alt="">`  
+          root2.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`
+          root3.innerHTML = `
+                <br>
+                <h3 class="text-warning">
+                  Siempre Estamos en Búsqueda
+                </h3>
+                <br>
+                <h5>
+                  Siempre buscamos las mejores opciones para dar un servicio de calidad.
+                </h5>
+                <img src="/imagenes/busqueda.webp" class="img-fluid rounded" alt="|">`
+        });
+      </script>
+      <script>
+        // INGRESAR DINERO
+        const Opcion2 = document.getElementById('Opcion2');
+
+        Opcion2.addEventListener('click', (event) => {
+          root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+          root2.innerHTML = `<br>
+                <form action="">
+                  <div class="d-grid gap-2">
+                   <button class="btn btn-warning" type="button" id = "Veinte">Sumar $20</button>
+                   <button class="btn btn-warning" type="button" id = "Cincuenta">Sumar $50</button>
+                   <button class="btn btn-warning" type="button" id = "Cien">Sumar $100</button>
+                  </div>
+                </form>`;
+          root3.innerHTML = `<h5 >Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+
+          const sumaUno = document.getElementById('Veinte')
+
+          sumaUno.addEventListener('click', (event) => {
+            if (lst[2].plata + 20 <= 990) {
+
+              const plataNueva = lst[2].plata + 20;
+            console.log(plataNueva)
+
+            lst.splice(2,1, {
+            nombre: "Carlos",
+             plata: plataNueva,
+             });
+            
+            localStorage.setItem("Usuarios", JSON.stringify(lst)); 
+
+            root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+            root3.innerHTML = `<h5>Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`
+
+            } else {
+              root3.innerHTML = `<h5 class = "text-danger">Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+            }
+          });
+
+          const sumaDos = document.getElementById('Cincuenta')
+
+          sumaDos.addEventListener('click', (event) => {
+            if (lst[2].plata + 50 <= 990) {
+
+              const plataNueva = lst[2].plata + 50;
+            console.log(plataNueva)
+
+            lst.splice(2,1, {
+            nombre: "Carlos",
+             plata: plataNueva,
+             });
+            
+            localStorage.setItem("Usuarios", JSON.stringify(lst)); 
+
+            root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+            root3.innerHTML = `<h5>Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`
+
+            } else {
+              root3.innerHTML = `<h5 class = "text-danger">Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+            }
+          });
+
+          const sumaTres = document.getElementById('Cien')
+
+          sumaTres.addEventListener('click', (event) => {
+            if (lst[2].plata + 100 <= 990) {
+
+              const plataNueva = lst[2].plata + 100;
+            console.log(plataNueva)
+
+            lst.splice(2,1, {
+            nombre: "Carlos",
+             plata: plataNueva,
+             });
+            
+            localStorage.setItem("Usuarios", JSON.stringify(lst)); 
+
+            root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+            root3.innerHTML = `<h5>Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`
+
+            } else {
+              root3.innerHTML = `<h5 class = "text-danger">Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+            }
+          });
+        })
+      </script>
+      <script>
+        //RETIRAR DINERO
+
+        const Opcion3 = document.getElementById('Opcion3');
+
+        Opcion3.addEventListener('click', (event) => {
+          root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+          root2.innerHTML = `<br>
+                <form action="">
+                  <div class="d-grid gap-2">
+                   <button class="btn btn-warning" type="button" id = "Veinte">Retirar $20</button>
+                   <button class="btn btn-warning" type="button" id = "Cincuenta">Retirar $50</button>
+                   <button class="btn btn-warning" type="button" id = "Cien">Retirar $100</button>
+                  </div>
+                </form>`;
+          root3.innerHTML = `<h5 >Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+
+          const sumaUno = document.getElementById('Veinte')
+
+          sumaUno.addEventListener('click', (event) => {
+            if (lst[2].plata - 20 >= 10) {
+
+              const plataNueva = lst[2].plata - 20;
+            console.log(plataNueva)
+
+            lst.splice(2,1, {
+            nombre: "Carlos",
+             plata: plataNueva,
+             });
+            
+            localStorage.setItem("Usuarios", JSON.stringify(lst)); 
+
+            root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+            root3.innerHTML = `<h5>Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`
+
+            } else {
+              root3.innerHTML = `<h5 class = "text-danger">Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+            }
+          });
+
+          const sumaDos = document.getElementById('Cincuenta')
+
+          sumaDos.addEventListener('click', (event) => {
+            if (lst[2].plata - 50 >= 10) {
+
+              const plataNueva = lst[2].plata - 50;
+            console.log(plataNueva)
+
+            lst.splice(2,1, {
+            nombre: "Carlos",
+             plata: plataNueva,
+             });
+            
+            localStorage.setItem("Usuarios", JSON.stringify(lst)); 
+
+            root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+            root3.innerHTML = `<h5>Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`
+
+            } else {
+              root3.innerHTML = `<h5 class = "text-danger">Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+            }
+          });
+
+          const sumaTres = document.getElementById('Cien')
+
+          sumaTres.addEventListener('click', (event) => {
+            if (lst[2].plata - 100 >= 10) {
+
+              const plataNueva = lst[2].plata - 100;
+            console.log(plataNueva)
+
+            lst.splice(2,1, {
+            nombre: "Carlos",
+             plata: plataNueva,
+             });
+            
+            localStorage.setItem("Usuarios", JSON.stringify(lst)); 
+
+            root1.innerHTML = `<h3>Tu saldo actual es:</h3><h4 class = "fs-1 text text-warning">$${lst[2].plata}</h4>`;
+            root3.innerHTML = `<h5>Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`
+
+            } else {
+              root3.innerHTML = `<h5 class = "text-danger">Recuerda que tu cuenta puede tener un máximo de $990 y un mínimo de $10.</h5>`;
+            }
+          });
+        })
+      </script>
+</body>
+</html>
